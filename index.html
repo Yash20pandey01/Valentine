@@ -3,242 +3,202 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Sakshi ❤️</title>
+<title>Sakshi ❤️ Yash</title>
 
 <style>
+* { box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
 body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: radial-gradient(circle at top, #1b2735, #090a0f);
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
+  margin: 0;
+  background: radial-gradient(circle at top, #2b0033, #000);
+  color: white;
+  text-align: center;
+  overflow: hidden;
 }
 
-/* ---------- MAIN CARD ---------- */
-.card {
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(10px);
-    width: 94%;
-    max-width: 390px;
-    padding: 20px;
-    border-radius: 22px;
-    text-align: center;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-    z-index: 2;
+.screen {
+  display: none;
+  height: 100vh;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-/* ---------- SLIDER ---------- */
-.slider {
-    height: 230px;
-    border-radius: 18px;
-    overflow: hidden;
-    margin-bottom: 15px;
-}
-.slider img {
-    width: 100%;
-    height: 230px;
-    object-fit: cover;
-    display: none;
-}
-.slider img.active { display: block; }
+.active { display: flex; }
 
-h1 { color: #ff6b81; margin: 8px 0; }
-p { font-size: 14px; opacity: 0.9; }
-h2 { margin: 16px 0; }
+h1, h2, p {
+  animation: fadeIn 2.5s ease;
+}
 
-/* ---------- BUTTONS ---------- */
-.buttons { position: relative; height: 70px; }
+img {
+  max-width: 82%;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(255,105,180,0.6);
+  margin: 20px 0;
+}
+
 button {
-    padding: 12px 22px;
-    border: none;
-    border-radius: 25px;
-    font-size: 16px;
-    cursor: pointer;
+  padding: 15px 32px;
+  font-size: 18px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
 }
-.yes { background: #ff4d6d; color: white; }
-.no { background: #aaa; position: absolute; }
 
-/* ---------- FLOATING HEARTS ---------- */
+#yesBtn {
+  background: hotpink;
+  color: white;
+}
+
+#noBtn {
+  background: #333;
+  color: white;
+  position: absolute;
+}
+
 .heart {
-    position: fixed;
-    bottom: -20px;
-    font-size: 20px;
-    animation: floatUp 6s linear infinite;
+  position: fixed;
+  bottom: -10px;
+  font-size: 22px;
+  animation: floatUp 16s linear infinite;
+  opacity: 0.7;
 }
+
 @keyframes floatUp {
-    to { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+  0% { transform: translateY(0); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(-130vh); opacity: 0; }
 }
 
-/* ---------- TRANSITION SCREENS ---------- */
-.fullscreen {
-    position: fixed;
-    inset: 0;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 4;
-    animation: fadeIn 0.8s;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-#thinking { background: radial-gradient(circle, #ff4d6d, #090a0f); }
-#kiss { background: radial-gradient(circle, #ff758f, #090a0f); }
-#hug { background: radial-gradient(circle, #ffb6c1, #090a0f); }
-
-.fullscreen h1 {
-    animation: heartbeat 1.2s infinite;
-    font-size: 32px;
+.hug {
+  animation: hugAnim 3.5s ease-in-out infinite;
 }
 
-@keyframes heartbeat {
-    0%,100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
+@keyframes hugAnim {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.07); }
 }
 
-/* ---------- FINAL SCREEN ---------- */
-#finalScreen {
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle at top, #1b2735, #090a0f);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-    animation: fadeIn 1.2s;
-    z-index: 5;
-}
-.finalCard {
-    max-width: 420px;
-    animation: zoomIn 1.2s;
-}
-.finalPhoto {
-    height: 260px;
-    border-radius: 18px;
-    background: url("IMG_0549.jpeg") center/cover no-repeat;
-    margin-bottom: 18px;
+.kiss {
+  animation: kissAnim 3s ease-in-out infinite;
 }
 
-@keyframes fadeIn { from {opacity:0} to {opacity:1} }
-@keyframes zoomIn { from {transform:scale(0.7)} to {transform:scale(1)} }
+@keyframes kissAnim {
+  0%,100% { transform: rotate(0deg); }
+  50% { transform: rotate(2deg); }
+}
 </style>
 </head>
 
 <body>
 
-<!-- MUSIC -->
-<audio id="bgMusic" loop autoplay muted>
+<!-- 🎵 MUSIC -->
+<audio id="bgMusic" autoplay loop>
   <source src="heer-ali-raza.mp3" type="audio/mpeg">
 </audio>
 
-<!-- MAIN CARD -->
-<div class="card">
-    <div class="slider">
-        <img src="FA0F8EB7-4801-47A8-A468-D84B423F45C2.jpeg" class="active">
-        <img src="IMG_1064.jpeg">
-        <img src="IMG_0581.png">
-    </div>
+<!-- 💖 SCREEN 1 -->
+<div class="screen active" id="screen1">
+  <img src="FA0F8EB7-4801-47A8-A468-D84B423F45C2.jpeg">
+  <h1>Will you be my Valentine? ❤️</h1>
 
-    <h1>Sakshi ❤️</h1>
-    <p>From Yash</p>
+  <p>
+    I love you so much.<br>
+    I hope we stay together forever.<br>
+    I trouble you a lot and get on your nerves,<br>
+    but I love you more than all of that.
+  </p>
 
-    <p>
-        I love you so much. I hope we stay together forever.<br>
-        I trouble you a lot and get on your nerves,<br>
-        but I love you more than that 💕
-    </p>
-
-    <h2>Will you be my Valentine? 💖</h2>
-
-    <div class="buttons">
-        <button class="yes" onclick="sayYes()">Yes 🥰</button>
-        <button class="no" id="noBtn">No 🙈</button>
-    </div>
+  <div>
+    <button id="yesBtn">Yes 💖</button>
+    <button id="noBtn">No 🙈</button>
+  </div>
 </div>
 
-<!-- SCREENS -->
-<div id="thinking" class="fullscreen">
-    <h1>💓 Thinking…</h1>
+<!-- 🤗 HUG -->
+<div class="screen" id="screen2">
+  <h2>Come here… 🤗</h2>
+  <img src="cb7b78bd-278b-4329-9e31-588f3e0790a7.jpeg" class="hug">
+  <p>
+    Every hug with you feels safe.<br>
+    Like the world fades away.
+  </p>
 </div>
 
-<div id="kiss" class="fullscreen">
-    <h1>😘 Kiss</h1>
+<!-- 💋 KISS -->
+<div class="screen" id="screen3">
+  <h2>Just one kiss… 💋</h2>
+  <img src="IMG_2470.jpeg" class="kiss">
+  <p>
+    And my heart forgets how to behave.
+  </p>
 </div>
 
-<div id="hug" class="fullscreen">
-    <h1>🤗 Hug</h1>
-</div>
+<!-- 🥹 FINAL -->
+<div class="screen" id="screen4">
+  <img src="IMG_0549.jpeg">
+  <h2>My Sakshi ❤️</h2>
+  <p>
+    Be mine this 14th February,<br>
+    and every day after that.<br><br>
 
-<div id="finalScreen">
-    <div class="finalCard">
-        <div class="finalPhoto"></div>
-        <h1>Forever Starts Now 💖</h1>
-        <p>
-            Sakshi,<br><br>
-            Loving you has been the most beautiful feeling of my life.<br>
-            I choose you today, this Valentine’s,
-            and I’ll keep choosing you — forever and beyond.<br><br>
-            — Yours, Yash ❤️
-        </p>
-    </div>
+    I promise love, patience, laughter,<br>
+    and a lifetime of annoying you.<br><br>
+
+    Forever. Always. Beyond. 💞<br><br>
+    — Yours, Yash
+  </p>
 </div>
 
 <script>
-/* AUTOPLAY FIX */
-window.addEventListener("click", () => {
-    const m = document.getElementById("bgMusic");
-    m.muted = false;
-    m.play().catch(()=>{});
-},{ once:true });
+const music = document.getElementById("bgMusic");
 
-/* SLIDER */
-let slides = document.querySelectorAll(".slider img");
-let i = 0;
-setInterval(()=>{
-    slides[i].classList.remove("active");
-    i = (i+1)%slides.length;
-    slides[i].classList.add("active");
-},2500);
+/* 🎧 Pause music when tab/app changes */
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    music.pause();
+  }
+});
 
-/* NO BUTTON */
+/* 💖 Floating hearts */
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (14 + Math.random()*6) + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 20000);
+}, 1000);
+
+/* 🙈 No button runaway */
 const noBtn = document.getElementById("noBtn");
-noBtn.onmouseover = noBtn.onclick = () => {
-    noBtn.style.transform =
-      `translate(${Math.random()*220-110}px,${Math.random()*40}px)`;
+noBtn.addEventListener("touchstart", moveNo);
+noBtn.addEventListener("mouseover", moveNo);
+
+function moveNo() {
+  noBtn.style.left = Math.random() * 70 + "vw";
+  noBtn.style.top = Math.random() * 70 + "vh";
+}
+
+/* ⏳ Screen flow */
+document.getElementById("yesBtn").onclick = () => {
+  showScreen("screen2");
+  setTimeout(() => showScreen("screen3"), 7000);
+  setTimeout(() => showScreen("screen4"), 14000);
 };
 
-/* YES FLOW */
-function sayYes(){
-    show("thinking");
-    setTimeout(()=>show("kiss"),1500);
-    setTimeout(()=>show("hug"),3000);
-    setTimeout(()=>{
-        hideAll();
-        document.getElementById("finalScreen").style.display="flex";
-    },4500);
+function showScreen(id) {
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
 }
-
-function show(id){
-    hideAll();
-    document.getElementById(id).style.display="flex";
-}
-function hideAll(){
-    document.querySelectorAll(".fullscreen").forEach(s=>s.style.display="none");
-}
-
-/* HEARTS */
-setInterval(()=>{
-    let h=document.createElement("div");
-    h.className="heart";
-    h.innerText="💖";
-    h.style.left=Math.random()*100+"vw";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),6000);
-},400);
 </script>
 
 </body>
