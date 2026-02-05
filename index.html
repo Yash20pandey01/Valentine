@@ -8,7 +8,6 @@
 <style>
 body {
     margin: 0;
-    padding: 0;
     font-family: 'Segoe UI', sans-serif;
     background: radial-gradient(circle at top, #1b2735, #090a0f);
     height: 100vh;
@@ -19,6 +18,7 @@ body {
     color: #fff;
 }
 
+/* ---------- MAIN CARD ---------- */
 .card {
     background: rgba(255,255,255,0.08);
     backdrop-filter: blur(10px);
@@ -28,76 +28,114 @@ body {
     border-radius: 22px;
     text-align: center;
     box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-    position: relative;
     z-index: 2;
 }
 
+/* ---------- SLIDER ---------- */
 .slider {
-    width: 100%;
     height: 230px;
     border-radius: 18px;
     overflow: hidden;
     margin-bottom: 15px;
 }
-
 .slider img {
     width: 100%;
     height: 230px;
     object-fit: cover;
     display: none;
 }
+.slider img.active { display: block; }
 
-.slider img.active {
-    display: block;
-}
-
-h1 { color: #ff6b81; margin: 8px 0 4px; }
+h1 { color: #ff6b81; margin: 8px 0; }
 p { font-size: 14px; opacity: 0.9; }
-h2 { margin: 16px 0; font-weight: 500; }
+h2 { margin: 16px 0; }
 
-.buttons { position: relative; height: 70px; margin-top: 10px; }
+/* ---------- BUTTONS ---------- */
+.buttons { position: relative; height: 70px; }
 button {
-    padding: 12px 22px; border: none; border-radius: 25px;
-    font-size: 16px; cursor: pointer;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
 }
-.yes { background: #ff4d6d; color: #fff; }
-.no { background: #aaa; color: #000; position: absolute; }
+.yes { background: #ff4d6d; color: white; }
+.no { background: #aaa; position: absolute; }
 
+/* ---------- FLOATING HEARTS ---------- */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+}
+@keyframes floatUp {
+    to { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+}
+
+/* ---------- TRANSITION SCREENS ---------- */
+.fullscreen {
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 4;
+    animation: fadeIn 0.8s;
+}
+
+#thinking { background: radial-gradient(circle, #ff4d6d, #090a0f); }
+#kiss { background: radial-gradient(circle, #ff758f, #090a0f); }
+#hug { background: radial-gradient(circle, #ffb6c1, #090a0f); }
+
+.fullscreen h1 {
+    animation: heartbeat 1.2s infinite;
+    font-size: 32px;
+}
+
+@keyframes heartbeat {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* ---------- FINAL SCREEN ---------- */
 #finalScreen {
-    position: fixed; inset: 0;
+    position: fixed;
+    inset: 0;
     background: radial-gradient(circle at top, #1b2735, #090a0f);
-    display: none; justify-content: center; align-items: center;
-    text-align: center; padding: 22px; z-index: 5;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    animation: fadeIn 1.2s;
+    z-index: 5;
 }
-
-.finalCard { max-width: 420px; }
+.finalCard {
+    max-width: 420px;
+    animation: zoomIn 1.2s;
+}
 .finalPhoto {
-    width: 100%;
     height: 260px;
     border-radius: 18px;
     background: url("IMG_0549.jpeg") center/cover no-repeat;
     margin-bottom: 18px;
 }
-#finalScreen h1 { color: #ff6b81; margin-bottom: 12px; }
-#finalScreen p { font-size: 16px; line-height: 1.6; }
 
-.heart {
-    position: fixed; bottom: -20px; font-size: 20px;
-    animation: floatUp 6s linear infinite; opacity: 0.7;
-}
-@keyframes floatUp {
-    0% { transform: translateY(0) scale(1); opacity: 0.8; }
-    100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
-}
+@keyframes fadeIn { from {opacity:0} to {opacity:1} }
+@keyframes zoomIn { from {transform:scale(0.7)} to {transform:scale(1)} }
 </style>
 </head>
 
 <body>
 
-<audio id="bgMusic" loop>
+<!-- MUSIC -->
+<audio id="bgMusic" loop autoplay muted>
   <source src="heer-ali-raza.mp3" type="audio/mpeg">
 </audio>
 
+<!-- MAIN CARD -->
 <div class="card">
     <div class="slider">
         <img src="FA0F8EB7-4801-47A8-A468-D84B423F45C2.jpeg" class="active">
@@ -105,13 +143,13 @@ button {
         <img src="IMG_0581.png">
     </div>
 
-    <h1>Sakshi Srivastava ❤️</h1>
-    <p>From Yash Pandey</p>
+    <h1>Sakshi ❤️</h1>
+    <p>From Yash</p>
 
     <p>
         I love you so much. I hope we stay together forever.<br>
         I trouble you a lot and get on your nerves,<br>
-        but I love you more than that ❤️
+        but I love you more than that 💕
     </p>
 
     <h2>Will you be my Valentine? 💖</h2>
@@ -122,57 +160,85 @@ button {
     </div>
 </div>
 
+<!-- SCREENS -->
+<div id="thinking" class="fullscreen">
+    <h1>💓 Thinking…</h1>
+</div>
+
+<div id="kiss" class="fullscreen">
+    <h1>😘 Kiss</h1>
+</div>
+
+<div id="hug" class="fullscreen">
+    <h1>🤗 Hug</h1>
+</div>
+
 <div id="finalScreen">
     <div class="finalCard">
         <div class="finalPhoto"></div>
-        <h1>You chose us 💕</h1>
+        <h1>Forever Starts Now 💖</h1>
         <p>
             Sakshi,<br><br>
-            This moment means more to me than I can ever explain.<br>
-            Loving you has been the most beautiful feeling of my life.<br><br>
-            I may annoy you, make silly mistakes,
-            and sometimes test your patience,<br>
-            but my heart has always been yours.<br><br>
-            On this 14th February, I choose you,
-            and I’ll keep choosing you — forever and beyond 💖<br><br>
-            — Yours, Yash
+            Loving you has been the most beautiful feeling of my life.<br>
+            I choose you today, this Valentine’s,
+            and I’ll keep choosing you — forever and beyond.<br><br>
+            — Yours, Yash ❤️
         </p>
     </div>
 </div>
 
 <script>
+/* AUTOPLAY FIX */
+window.addEventListener("click", () => {
+    const m = document.getElementById("bgMusic");
+    m.muted = false;
+    m.play().catch(()=>{});
+},{ once:true });
+
+/* SLIDER */
 let slides = document.querySelectorAll(".slider img");
-let index = 0;
-setInterval(() => {
-    slides[index].classList.remove("active");
-    index = (index + 1) % slides.length;
-    slides[index].classList.add("active");
-}, 2500);
+let i = 0;
+setInterval(()=>{
+    slides[i].classList.remove("active");
+    i = (i+1)%slides.length;
+    slides[i].classList.add("active");
+},2500);
 
+/* NO BUTTON */
 const noBtn = document.getElementById("noBtn");
-noBtn.addEventListener("mouseover", moveBtn);
-noBtn.addEventListener("click", moveBtn);
+noBtn.onmouseover = noBtn.onclick = () => {
+    noBtn.style.transform =
+      `translate(${Math.random()*220-110}px,${Math.random()*40}px)`;
+};
 
-function moveBtn() {
-    const x = Math.random() * 220 - 110;
-    const y = Math.random() * 40;
-    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+/* YES FLOW */
+function sayYes(){
+    show("thinking");
+    setTimeout(()=>show("kiss"),1500);
+    setTimeout(()=>show("hug"),3000);
+    setTimeout(()=>{
+        hideAll();
+        document.getElementById("finalScreen").style.display="flex";
+    },4500);
 }
 
-function sayYes() {
-    document.getElementById("finalScreen").style.display = "flex";
-    document.getElementById("bgMusic").play().catch(()=>{});
+function show(id){
+    hideAll();
+    document.getElementById(id).style.display="flex";
+}
+function hideAll(){
+    document.querySelectorAll(".fullscreen").forEach(s=>s.style.display="none");
 }
 
-setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerText = "💖";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (18 + Math.random() * 20) + "px";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 6000);
-}, 400);
+/* HEARTS */
+setInterval(()=>{
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerText="💖";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+},400);
 </script>
 
 </body>
