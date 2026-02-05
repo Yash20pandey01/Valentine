@@ -60,6 +60,29 @@ button {
 
 .buttons { position: relative; margin-top: 20px; }
 
+/* START GATE */
+#musicGate {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#musicGate p { font-size: 18px; margin-bottom: 16px; }
+
+#musicGate button {
+  padding: 14px 40px;
+  font-size: 18px;
+  border-radius: 30px;
+  border: none;
+  background: hotpink;
+  color: white;
+}
+
+/* Hearts */
 .heart {
   position: fixed;
   bottom: -20px;
@@ -99,6 +122,14 @@ button {
 
 <body>
 
+<!-- MUSIC GATE -->
+<div id="musicGate">
+  <div>
+    <p>Tap to begin 💖</p>
+    <button id="startMusic">Start</button>
+  </div>
+</div>
+
 <audio id="bgMusic" loop preload="auto">
   <source src="heer-ali-raza.mp3" type="audio/mpeg">
 </audio>
@@ -107,7 +138,6 @@ button {
 <div class="screen active" id="screen1">
   <img src="FA0F8EB7-4801-47A8-A468-D84B423F45C2.jpeg">
   <h1>Will you be my Valentine? ❤️</h1>
-  <p style="opacity:0.75;font-size:14px;">Tap anywhere to begin 💖</p>
   <p>
     I love you so much.  
     I hope we stay together forever.  
@@ -166,19 +196,15 @@ button {
 
 <script>
 const music = document.getElementById("bgMusic");
-let musicStarted = false;
 
-/* 🔊 Start music on FIRST interaction (Android-safe) */
-function startMusic() {
-  if (musicStarted) return;
-  musicStarted = true;
+/* START MUSIC — GUARANTEED */
+document.getElementById("startMusic").onclick = () => {
   music.currentTime = 4;
-  music.play().catch(()=>{});
-}
-document.body.addEventListener("touchstart", startMusic, { once: true });
-document.body.addEventListener("click", startMusic, { once: true });
+  music.play();
+  document.getElementById("musicGate").style.display = "none";
+};
 
-/* ⛔ Stop music when leaving */
+/* STOP MUSIC WHEN LEAVING */
 function stopMusic() {
   music.pause();
   music.currentTime = 0;
@@ -189,7 +215,7 @@ document.addEventListener("visibilitychange", () => {
 window.addEventListener("pagehide", stopMusic);
 window.addEventListener("beforeunload", stopMusic);
 
-/* 💖 Floating hearts */
+/* HEARTS */
 setInterval(() => {
   const h = document.createElement("div");
   h.className = "heart";
@@ -199,7 +225,7 @@ setInterval(() => {
   setTimeout(() => h.remove(), 20000);
 }, 1200);
 
-/* 🙈 No button escape */
+/* NO BUTTON */
 const noBtn = document.getElementById("noBtn");
 function moveNo() {
   noBtn.style.left = Math.random() * 60 + "vw";
@@ -208,7 +234,7 @@ function moveNo() {
 noBtn.addEventListener("mouseover", moveNo);
 noBtn.addEventListener("touchstart", moveNo);
 
-/* ⏳ Flow timing */
+/* FLOW */
 document.getElementById("yesBtn").onclick = () => {
   show("screen2");
   setTimeout(() => show("screen3"), 7000);
