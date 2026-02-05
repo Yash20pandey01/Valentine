@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Sakshi ❤️ Yash</title>
 
 <style>
-* { box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
 
 body {
   margin: 0;
@@ -14,12 +17,14 @@ body {
   color: white;
   text-align: center;
   overflow: hidden;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right)
+           env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 .screen {
   display: none;
-  height: 100vh;
-  padding: 20px;
+  min-height: 100vh;
+  padding: 24px 16px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -27,26 +32,40 @@ body {
 
 .active { display: flex; }
 
-h1, h2, p { animation: fadeIn 2.5s ease; }
+h1 { font-size: clamp(24px, 5vw, 42px); }
+h2 { font-size: clamp(22px, 4.5vw, 36px); }
+
+p {
+  font-size: clamp(15px, 3.5vw, 18px);
+  line-height: 1.7;
+  max-width: 720px;
+}
 
 img {
-  max-width: 82%;
+  width: 100%;
+  max-width: 420px;
   border-radius: 20px;
   box-shadow: 0 0 30px rgba(255,105,180,0.6);
-  margin: 20px 0;
+  margin: 16px 0;
+}
+
+@media (min-width: 768px) {
+  img { max-width: 480px; }
 }
 
 button {
-  padding: 15px 32px;
+  padding: 14px 32px;
   font-size: 18px;
   border-radius: 30px;
   border: none;
   cursor: pointer;
-  margin: 10px;
+  margin: 8px;
 }
 
 #yesBtn { background: hotpink; color: white; }
 #noBtn  { background: #333; color: white; position: absolute; }
+
+.buttons { position: relative; margin-top: 20px; }
 
 .heart {
   position: fixed;
@@ -54,6 +73,7 @@ button {
   font-size: 22px;
   animation: floatUp 16s linear infinite;
   opacity: 0.7;
+  pointer-events: none;
 }
 
 @keyframes floatUp {
@@ -62,12 +82,7 @@ button {
   100% { transform: translateY(-130vh); opacity: 0; }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(25px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.hug  { animation: hugAnim 3.5s ease-in-out infinite; }
+.hug { animation: hugAnim 3.5s ease-in-out infinite; }
 .kiss { animation: kissAnim 3s ease-in-out infinite; }
 
 @keyframes hugAnim {
@@ -79,17 +94,23 @@ button {
   0%,100% { transform: rotate(0deg); }
   50% { transform: rotate(2deg); }
 }
+
+.letter {
+  background: rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 0 25px rgba(255,105,180,0.3);
+}
 </style>
 </head>
 
 <body>
 
-<!-- 🎵 MUSIC -->
 <audio id="bgMusic" loop>
   <source src="heer-ali-raza.mp3" type="audio/mpeg">
 </audio>
 
-<!-- 💖 SCREEN 1 -->
+<!-- SCREENS (unchanged content) -->
 <div class="screen active" id="screen1">
   <img src="FA0F8EB7-4801-47A8-A468-D84B423F45C2.jpeg">
   <h1>Will you be my Valentine? ❤️</h1>
@@ -99,48 +120,56 @@ button {
     I trouble you a lot and get on your nerves,<br>
     but I love you more than all of that.
   </p>
-  <div>
+  <div class="buttons">
     <button id="yesBtn">Yes 💖</button>
     <button id="noBtn">No 🙈</button>
   </div>
 </div>
 
-<!-- 🤗 HUG -->
 <div class="screen" id="screen2">
   <h2>Come here… 🤗</h2>
   <img src="cb7b78bd-278b-4329-9e31-588f3e0790a7.jpeg" class="hug">
   <p>Every hug with you feels safe.<br>Like the world fades away.</p>
 </div>
 
-<!-- 💋 KISS -->
 <div class="screen" id="screen3">
   <h2>Just one kiss… 💋</h2>
   <img src="IMG_2470.jpeg" class="kiss">
   <p>And my heart forgets how to behave.</p>
 </div>
 
-<!-- 🥹 FINAL -->
 <div class="screen" id="screen4">
+  <div class="letter">
+    <p>
+      <strong>Sakshi,</strong><br><br>
+      I just want you to know that having you in my life genuinely makes things better.
+      You’ve become my calm, my clarity, and someone I truly trust.<br><br>
+      Tumhare saath sab thoda stable aur sorted lagta hai.
+      Tumhara samajhna, support karna, aur saath khade rehna —
+      that matters to me more than big words.<br><br>
+      I value what we have and the way we grow together.
+      With you, things feel real and right.<br><br>
+      Valentine’s Day aside, I choose you — today and going forward.<br><br>
+      — Yash
+    </p>
+  </div>
+</div>
+
+<div class="screen" id="screen5">
   <img src="IMG_0549.jpeg">
   <h2>My Sakshi ❤️</h2>
-  <p>
-    Be mine this 14th February,<br>
-    and every day after that.<br><br>
-    I promise love, patience, laughter,<br>
-    and a lifetime of annoying you.<br><br>
-    Forever. Always. Beyond. 💞<br><br>
-    — Yours, Yash
-  </p>
+  <p>Forever. Always. Beyond. 💞</p>
 </div>
 
 <script>
 const music = document.getElementById("bgMusic");
 let musicStarted = false;
 
-/* ▶️ Start music on first interaction (iOS safe) */
+/* ▶️ Start music at 4s (skip intro) */
 function startMusicOnce() {
   if (!musicStarted) {
-    music.play().catch(() => {});
+    music.currentTime = 4;   // ⏩ skip blank intro
+    music.play().catch(()=>{});
     musicStarted = true;
     document.removeEventListener("click", startMusicOnce);
     document.removeEventListener("touchstart", startMusicOnce);
@@ -149,51 +178,45 @@ function startMusicOnce() {
 document.addEventListener("click", startMusicOnce);
 document.addEventListener("touchstart", startMusicOnce);
 
-/* ⏸ Pause on tab/app change */
+/* ⛔ Stop music when leaving */
+function stopMusic() {
+  music.pause();
+  music.currentTime = 0;
+}
 document.addEventListener("visibilitychange", () => {
-  if (document.hidden) {
-    music.pause();
-    music.currentTime = 0;
-  }
+  if (document.hidden) stopMusic();
 });
+window.addEventListener("pagehide", stopMusic);
+window.addEventListener("beforeunload", stopMusic);
 
-/* ⛔ Stop when site is closed or navigated away */
-window.addEventListener("pagehide", () => {
-  music.pause();
-  music.currentTime = 0;
-});
-window.addEventListener("beforeunload", () => {
-  music.pause();
-  music.currentTime = 0;
-});
-
-/* 💖 Floating hearts */
+/* ❤️ Hearts */
 setInterval(() => {
   const heart = document.createElement("div");
   heart.className = "heart";
   heart.innerHTML = "💖";
   heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (14 + Math.random()*6) + "s";
   document.body.appendChild(heart);
   setTimeout(() => heart.remove(), 20000);
 }, 1000);
 
-/* 🙈 No button runaway */
+/* 🙈 No button */
 const noBtn = document.getElementById("noBtn");
-noBtn.addEventListener("touchstart", moveNo);
-noBtn.addEventListener("mouseover", moveNo);
 function moveNo() {
-  noBtn.style.left = Math.random() * 70 + "vw";
-  noBtn.style.top  = Math.random() * 70 + "vh";
+  noBtn.style.left = Math.random() * 60 + "vw";
+  noBtn.style.top  = Math.random() * 60 + "vh";
 }
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("touchstart", moveNo);
 
 /* ⏳ Flow */
 document.getElementById("yesBtn").onclick = () => {
-  showScreen("screen2");
-  setTimeout(() => showScreen("screen3"), 7000);
-  setTimeout(() => showScreen("screen4"), 14000);
+  show("screen2");
+  setTimeout(() => show("screen3"), 7000);
+  setTimeout(() => show("screen4"), 14000);
+  setTimeout(() => show("screen5"), 24000);
 };
-function showScreen(id) {
+
+function show(id) {
   document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
