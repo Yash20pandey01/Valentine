@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Sakshi ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at top, #1b2735, #090a0f);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    width: 94%;
+    max-width: 390px;
+    padding: 20px;
+    border-radius: 22px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    position: relative;
+    z-index: 2;
+}
+
+.slider {
+    width: 100%;
+    height: 230px;
+    border-radius: 18px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.slider img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    display: none;
+}
+
+.slider img.active {
+    display: block;
+}
+
+h1 { color: #ff6b81; margin: 8px 0 4px; }
+p { font-size: 14px; opacity: 0.9; }
+h2 { margin: 16px 0; font-weight: 500; }
+
+.buttons { position: relative; height: 70px; margin-top: 10px; }
+button {
+    padding: 12px 22px; border: none; border-radius: 25px;
+    font-size: 16px; cursor: pointer;
+}
+.yes { background: #ff4d6d; color: #fff; }
+.no { background: #aaa; color: #000; position: absolute; }
+
+#finalScreen {
+    position: fixed; inset: 0;
+    background: radial-gradient(circle at top, #1b2735, #090a0f);
+    display: none; justify-content: center; align-items: center;
+    text-align: center; padding: 22px; z-index: 5;
+}
+
+.finalCard { max-width: 420px; }
+.finalPhoto {
+    width: 100%;
+    height: 260px;
+    border-radius: 18px;
+    background: url("IMG_0549.jpeg") center/cover no-repeat;
+    margin-bottom: 18px;
+}
+#finalScreen h1 { color: #ff6b81; margin-bottom: 12px; }
+#finalScreen p { font-size: 16px; line-height: 1.6; }
+
+.heart {
+    position: fixed; bottom: -20px; font-size: 20px;
+    animation: floatUp 6s linear infinite; opacity: 0.7;
+}
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 0.8; }
+    100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+  <source src="heer-ali-raza.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+    <div class="slider">
+        <img src="FA0F8EB7-4801-47A8-A468-D84B423F45C2.jpeg" class="active">
+        <img src="IMG_1064.jpeg">
+        <img src="IMG_0581.png">
+    </div>
+
+    <h1>Sakshi Srivastava ❤️</h1>
+    <p>From Yash Pandey</p>
+
+    <p>
+        I love you so much. I hope we stay together forever.<br>
+        I trouble you a lot and get on your nerves,<br>
+        but I love you more than that ❤️
+    </p>
+
+    <h2>Will you be my Valentine? 💖</h2>
+
+    <div class="buttons">
+        <button class="yes" onclick="sayYes()">Yes 🥰</button>
+        <button class="no" id="noBtn">No 🙈</button>
+    </div>
+</div>
+
+<div id="finalScreen">
+    <div class="finalCard">
+        <div class="finalPhoto"></div>
+        <h1>You chose us 💕</h1>
+        <p>
+            Sakshi,<br><br>
+            This moment means more to me than I can ever explain.<br>
+            Loving you has been the most beautiful feeling of my life.<br><br>
+            I may annoy you, make silly mistakes,
+            and sometimes test your patience,<br>
+            but my heart has always been yours.<br><br>
+            On this 14th February, I choose you,
+            and I’ll keep choosing you — forever and beyond 💖<br><br>
+            — Yours, Yash
+        </p>
+    </div>
+</div>
+
+<script>
+let slides = document.querySelectorAll(".slider img");
+let index = 0;
+setInterval(() => {
+    slides[index].classList.remove("active");
+    index = (index + 1) % slides.length;
+    slides[index].classList.add("active");
+}, 2500);
+
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", moveBtn);
+noBtn.addEventListener("click", moveBtn);
+
+function moveBtn() {
+    const x = Math.random() * 220 - 110;
+    const y = Math.random() * 40;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+function sayYes() {
+    document.getElementById("finalScreen").style.display = "flex";
+    document.getElementById("bgMusic").play().catch(()=>{});
+}
+
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (18 + Math.random() * 20) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}, 400);
+</script>
+
+</body>
+</html>
